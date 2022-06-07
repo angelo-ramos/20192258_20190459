@@ -58,7 +58,7 @@ public class ActoresDao {
                      "\t\t\tinner join sakila.category c on (c.category_id=j.category_id)\n" +
                      "            order by a.actor_id) n\n" +
                      "            group by n.actor_id) m on (m.actor_id = a.actor_id)\n" +
-                     "where (upper(a.first_name) like \"%LO%\" or upper(a.last_name) like \"%LO%\") and l.name='English'\n" +
+                     "where (upper(a.first_name) like '%LO%' or upper(a.last_name) like '%LO%') and l.name='English'\n" +
                      "group by `ID`\n" +
                      "having `Cantidad Peliculas`>20 and `Cantidad Categorias`>12\n" +
                      "order by `ID`;")) {
