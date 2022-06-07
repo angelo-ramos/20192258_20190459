@@ -10,7 +10,7 @@ public class ActoresDao {
     private static String pass = "root";
     private static String url = "jdbc:mysql://localhost:3306/sakila";
 
-    public String transformar(String nombres){
+    public String cambiarFormatoNombre(String nombres){
         String[] separado = nombres.split(" ");
 
         //Nombre
@@ -70,7 +70,7 @@ public class ActoresDao {
                 int numCategorias = rs.getInt(3);
                 int numPeliculas = rs.getInt(4);
 
-                listaActores.add(new Actores(idActor,this.transformar(nombreActor),numCategorias,numPeliculas));
+                listaActores.add(new Actores(idActor,this.cambiarFormatoNombre(nombreActor),numCategorias,numPeliculas));
             }
 
         } catch (SQLException e) {
