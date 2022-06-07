@@ -10,7 +10,31 @@ public class ActoresDao {
     private static String pass = "root";
     private static String url = "jdbc:mysql://localhost:3306/sakila";
 
-    public ArrayList<Actores> obtenerActores(){
+    public String transformar(String nombres){
+        String[] separado = nombres.split(" ");
+
+        //Nombre
+        String str1 = separado[0].toLowerCase();
+        String firstLtr = str1.substring(0, 1);
+        String restLtrs = str1.substring(1, str1.length());
+
+        firstLtr = firstLtr.toUpperCase();
+        str1 = firstLtr + restLtrs;
+
+        //Apellido
+        String str2 = separado[1].toLowerCase();
+        String firstLtr2 = str2.substring(0, 1);
+        String restLtrs2 = str2.substring(1, str2.length());
+
+        firstLtr2 = firstLtr2.toUpperCase();
+        str2 = firstLtr2 + restLtrs2;
+
+        String last = str1+" "+str2;
+
+        return last;
+    }
+
+    public ArrayList<Actores> listarActores(){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
@@ -46,7 +70,7 @@ public class ActoresDao {
                 int numCategorias = rs.getInt(3);
                 int numPeliculas = rs.getInt(4);
 
-                listaActores.add(new Actores(idActor,nombreActor,numCategorias,numPeliculas));
+                listaActores.add(new Actores(idActor,this.transformar(nombreActor),numCategorias,numPeliculas));
             }
 
         } catch (SQLException e) {
